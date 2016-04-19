@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MVC5Course.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+    @if(TempData["UpdateMessage"] != null)
+    {       
+        <script>
+            alert('@TempData["UpdateMessage"]');
+        </script>
+    }
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+    @{ 
+        var data = Model.ToArray();
+    }
+
+    @for (int i = 0; i < data.Length; i++)
+    {
+        @Html.HiddenFor(modelItem => data[i].ProductId)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => data[i].ProductName)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => data[i].Price)
+                @Html.ValidationMessageFor(modelItem => data[i].Price, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => data[i].Active)
+                @Html.ValidationMessageFor(modelItem => data[i].Active, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => data[i].Stock)
+                @Html.ValidationMessageFor(modelItem => data[i].Stock, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = data[i].ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id = data[i].ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = data[i].ProductId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<input type="submit" value="批次更新 Product" />
+
+        }
+
+

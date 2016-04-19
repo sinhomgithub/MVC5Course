@@ -1,0 +1,11 @@
+﻿@model DateTime?
+
+@if(Model.HasValue)
+{
+    var str = String.Format("民國 {0} 年 {1} 月 {2} 日", Model.Value.Year - 1911, Model.Value.Month, Model.Value.Day);
+    <text>@str</text>
+}
+else
+{
+    <text>N/a</text>
+}

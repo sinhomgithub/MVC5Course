@@ -25,6 +25,9 @@
                     <li>@Html.ActionLink("首頁", "Index", "Home")</li>
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Test1", "Test", "Home")</li>
+                    <li>@Html.ActionLink("Test2", "Index", "Test")</li>
+                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,6 +38,8 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+            <p>執行時間: @ViewBag.ActionExecutedTimeSpan</p>
+            @*<p>執行次數: @Session["ActionCount"]</p>*@
         </footer>
     </div>
 

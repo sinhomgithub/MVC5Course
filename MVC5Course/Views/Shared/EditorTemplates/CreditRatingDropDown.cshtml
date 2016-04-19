@@ -1,0 +1,17 @@
+﻿@model double?
+
+
+@{
+    // 從 db 撈取 CreditRating 清單
+    var db = new MVC5Course.Models.FabricsEntities();
+
+    var data = db.Client.Select(p => p.CreditRating).Distinct().OrderBy(p => p).ToList();
+
+    // 產生 SelectList
+    SelectList list = new SelectList(data, Model);   // 從 Model 設定預設值
+  
+
+}
+
+@Html.DropDownList("", list, "-- 請選取 CreditRating --", new { @class="form-control"} )
+

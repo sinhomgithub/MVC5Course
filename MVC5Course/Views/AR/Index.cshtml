@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>AR/Index</h2>
+
+<a href="@Url.Action("FileTest","AR")?dl=1">
+<img src="@Url.Action("FileTest","AR")" />
+</a>
+<br />
+<button id="btnJsonTest">Get JsonResult </button>
+
+
+@section Scripts{
+
+    <script>
+        $('#btnJsonTest').on("click", function () {
+
+            var url = "@Url.Action("JsonTest", new { id = 15 })";
+            $.get(url, null, function (data) {
+                console.log(data);
+            })
+        });
+
+    </script>
+
+    }

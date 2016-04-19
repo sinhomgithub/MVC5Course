@@ -1,0 +1,16 @@
+﻿@model double?
+
+
+@for(int i = 0; i < 10; i++)
+{
+    bool checkBool = false;
+    if (Model.HasValue && i == Model.Value)
+    {
+        checkBool = true;
+    }
+    <label>
+    @Html.RadioButton("", i.ToString(), checkBool)
+
+    @i
+    </label>
+}

@@ -6,15 +6,17 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
             return View();
         }
 
+       
         public ActionResult About()
         {
+          
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -26,5 +28,24 @@ namespace MVC5Course.Controllers
 
             return View();
         }
+
+        [HandleError(ExceptionType = typeof(InvalidOperationException), View = "Error2")]
+        public ActionResult Test(string name)
+        {
+            if (String.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("參數錯誤啦 !");
+            }
+            throw new InvalidOperationException("操作錯誤 !!!");
+
+            return View();
+        }
+
+        public ActionResult NewIndex()
+        {
+            return View();
+        }
+
+
     }
 }
